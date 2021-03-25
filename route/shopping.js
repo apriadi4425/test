@@ -6,7 +6,7 @@ const ShoppingController = require('../controller/ShoppingController')
 
 router.get('/', ShoppingController.getAll);
 router.post('/', ShoppingController.Create);
-router.post('/:id', ShoppingController.getById);
+router.get('/:id', ShoppingController.getById);
 router.put('/:id', ShoppingController.Update);
 router.delete('/:id', ShoppingController.delete);
 
