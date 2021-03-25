@@ -1,5 +1,6 @@
 const models = require('../models')
 var md5 = require('md5');
+const jwt = require("jsonwebtoken");
 
 const accessTokenSecret = process.env.SECRET_KEY;
 
