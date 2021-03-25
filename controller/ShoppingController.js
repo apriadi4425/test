@@ -3,7 +3,7 @@ const models = require('../models')
 exports.Create = (req, res) => {
     const { createddate, name } = req.body.shopping
     models.Shopping.create({
-        createddate, name
+        create_date : createddate, name
     }).then(result => {
         res.send({
             createddate : createddate,
