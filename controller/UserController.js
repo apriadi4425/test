@@ -49,3 +49,18 @@ exports.SignIn = async (req, res) => {
         })
     }
 }
+
+exports.GetAllUsers = (req, res) => {
+    models.User.findAll({raw : true})
+        .then(result => {
+            res.send({
+                status : 'sukses',
+                data : result
+            })
+        }).catch(err => {
+            res.send({
+                status : 'error',
+                data : err
+            })
+        })
+}
