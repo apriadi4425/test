@@ -22,6 +22,30 @@ exports.SignUp = (req, res) => {
 }
 
 
-exports.SignIn = (req, res) => {
-    
+exports.SignIn = async (req, res) => {
+    const {email, password} = req.body
+    const User = await models.User.findOne({
+        where : {
+            email : email,
+            password : md5(password)
+        }
+    })
+
+    if(User !== null){
+        const DataUser = User.dataValues;
+        const accessToken = jwt.sign({ username: DataUser.username}, accessTokenSecret);
+        res.status(200).send({
+            email : email,
+            token : accessToken,
+            username : DataUser.username
+        })
+
+    }else{
+        res.status(401).send({
+            status : 401,
+            data : {
+                message : 'Username atau password salah'
+            }
+        })
+    }
 }
